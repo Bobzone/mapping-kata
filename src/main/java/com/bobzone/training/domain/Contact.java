@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-class Contact extends PersonalizedEntity {
+public class Contact extends PersonalizedEntity {
 
     public Contact() {
     }
