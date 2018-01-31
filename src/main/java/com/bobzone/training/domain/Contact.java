@@ -3,6 +3,7 @@ package com.bobzone.training.domain;
 import com.bobzone.training.utils.Constants;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,6 +19,12 @@ public class Contact extends PersonalizedEntity {
     public Contact() {
     }
 
+    public Contact(final String firstName, final String lastName, final String address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+    }
+
     private String firstName;
 
     private String lastName;
@@ -25,7 +32,7 @@ public class Contact extends PersonalizedEntity {
     private String address;
 
     @OneToMany(mappedBy = "contact", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Collection<Phone> phoneList;
+    private Collection<Phone> phoneList = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;

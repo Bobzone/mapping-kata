@@ -9,6 +9,10 @@ public class Phone extends PersonalizedEntity {
     public Phone() {
     }
 
+    public Phone(final String cellNumber) {
+        this.cellNumber = cellNumber;
+    }
+
     @ManyToOne
     private Contact contact;
 
