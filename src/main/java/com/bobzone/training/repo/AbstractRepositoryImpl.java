@@ -1,10 +1,12 @@
 package com.bobzone.training.repo;
 
 import com.bobzone.training.domain.PersonalizedEntity;
+import com.bobzone.training.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -12,7 +14,7 @@ import java.util.Collection;
 @Repository
 public abstract class AbstractRepositoryImpl<T extends PersonalizedEntity> implements AbstractRepository<T> {
 
-    final EntityManager em;
+    private final EntityManager em;
 
     private Class<T> type;
 
@@ -34,9 +36,9 @@ public abstract class AbstractRepositoryImpl<T extends PersonalizedEntity> imple
     public Collection<T> getAll() {
         try {
             em.getTransaction().begin();
-            //TODO: get the stuff
+            Query q = em.createNamedQuery(Constants.GET_ALL_ENTITIES_QUERY_NAME + type.getSimpleName(), type);
             em.getTransaction().commit();
-            return null;
+            return q.getResultList();
         } finally {
             em.close();
         }

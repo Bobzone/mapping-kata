@@ -1,4 +1,40 @@
 package com.bobzone.training.service;
 
-class ContactService {
+import com.bobzone.training.domain.Contact;
+import com.bobzone.training.repo.ContactRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+
+@Service
+public class ContactService {
+
+    private final ContactRepository repository;
+
+    @Autowired
+    public ContactService(final ContactRepository repository) {
+        this.repository = repository;
+    }
+
+    public Contact getWithId(final Long id) {
+        return repository.getWithId(id);
+    }
+
+    public Collection<Contact> getAll() {
+        return repository.getAll();
+    }
+
+    public Contact getWithFirstName(final String firstName) {
+        return repository.getWithFirstName(firstName);
+    }
+
+    public Contact save(final Contact merged) {
+        return repository.merge(merged);
+    }
+
+    public void delete(final Contact deleted) {
+        repository.delete(deleted);
+    }
+
 }

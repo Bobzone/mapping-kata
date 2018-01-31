@@ -1,12 +1,18 @@
 package com.bobzone.training.domain;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import com.bobzone.training.utils.Constants;
+
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = Constants.GET_ALL_ENTITIES_QUERY_NAME + "Contact",
+                query = "SELECT c from Contact c "
+        )
+})
 public class Contact extends PersonalizedEntity {
 
     public Contact() {
