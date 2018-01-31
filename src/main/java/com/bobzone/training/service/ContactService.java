@@ -29,8 +29,8 @@ public class ContactService {
         return repository.getWithFirstName(firstName);
     }
 
-    public Contact save(final Contact merged) {
-        return repository.merge(merged);
+    public void save(final Contact merged) {
+        repository.persist(merged);
     }
 
     public void delete(final Contact deleted) {

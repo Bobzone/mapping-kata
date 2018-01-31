@@ -25,6 +25,7 @@ public class SimpleMappingKataApplication implements CommandLineRunner {
     @Override
     public void run(final String... strings) throws Exception {
 
+        // Those will be persisted, but the foreign key will appear as null
         Contact contact1 = new Contact("Obi-Wan", "Kenobi", "O'Connell Street Lower, Dublin");
         contact1.getPhoneList().add(new Phone("555-055-055"));
 
@@ -33,7 +34,11 @@ public class SimpleMappingKataApplication implements CommandLineRunner {
 
         Contact contact3 = new Contact("Darth", "Maul", "56 Goldbrook sq, Wellington");
         contact3.getPhoneList().add(new Phone("666-666-666"));
-        contact3.getPhoneList().add(new Phone("066-66-66"));
+
+        // This solves the problem of null in database
+        final Phone phone1 = new Phone("066-66-66");
+        contact3.getPhoneList().add(phone1);
+        phone1.setContact(contact3);
 
         service.save(contact1);
         service.save(contact2);

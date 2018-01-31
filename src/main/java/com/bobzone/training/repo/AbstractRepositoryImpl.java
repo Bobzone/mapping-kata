@@ -45,14 +45,10 @@ public abstract class AbstractRepositoryImpl<T extends PersonalizedEntity> imple
         }
     }
 
+    @Override
+    @Transactional
     public void persist(final T obj) {
-        try {
-            em.getTransaction().begin();
-            em.persist(obj);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
+        em.persist(obj);
     }
 
     @Override

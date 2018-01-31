@@ -14,6 +14,8 @@ public class Phone extends PersonalizedEntity {
     }
 
     @ManyToOne
+    // This ad is redundant, but thats actually what happens automagically
+//    @JoinColumn(name = "contact_Id")
     private Contact contact;
 
     private String cellNumber;

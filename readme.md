@@ -65,5 +65,25 @@ SpringBoot complains that you want to manually manage the `TransactionManager` w
     }
 ```
 
+5. Im looking in my h2 db and it seems there is no relation between entities! WTF IS GOING ON?
+
+```
+        // Those will be persisted, but the foreign key will appear as null
+        Contact contact1 = new Contact("Obi-Wan", "Kenobi", "O'Connell Street Lower, Dublin");
+        contact1.getPhoneList().add(new Phone("555-055-055"));
+
+        Contact contact2 = new Contact("Qui-gon", "Jin", "Pembroke Cottages, London");
+        contact2.getPhoneList().add(new Phone("333-333-333"));
+
+        Contact contact3 = new Contact("Darth", "Maul", "56 Goldbrook sq, Wellington");
+        contact3.getPhoneList().add(new Phone("666-666-666"));
+
+        // This solves the problem of null in database
+        final Phone phone1 = new Phone("066-66-66");
+        contact3.getPhoneList().add(phone1);
+        phone1.setContact(contact3);
+```
+You have to manually take care of the mapping if you have a bi-directional relation.
+
 ## Things to look into in future
 1. Usage of `@Repository` adnotation in classes in the project. It is possible that there are no redundant adnotations right now, but it is a detail to look into.

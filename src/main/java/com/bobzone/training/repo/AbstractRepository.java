@@ -8,6 +8,8 @@ public interface AbstractRepository<T> {
 
     public Collection<T> getAll();
 
+    public void persist(T obj);
+
     public T merge(T merged);
 
     public void delete(T deleted);

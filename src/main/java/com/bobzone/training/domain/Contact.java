@@ -4,7 +4,6 @@ import com.bobzone.training.utils.Constants;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -32,7 +31,7 @@ public class Contact extends PersonalizedEntity {
     private String address;
 
     @OneToMany(mappedBy = "contact", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private Collection<Phone> phoneList = new ArrayList<>();
+    private List<Phone> phoneList = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -50,7 +49,7 @@ public class Contact extends PersonalizedEntity {
         this.lastName = lastName;
     }
 
-    public Collection<Phone> getPhoneList() {
+    public List<Phone> getPhoneList() {
         return phoneList;
     }
 
