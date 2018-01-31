@@ -11,3 +11,16 @@ This section contains things you should know while building a similar app or usi
 // @MappedSupperclass is for adding base class persistent properties as if they were declared in them directly
 public abstract class PersonalizedEntity {
 ```
+
+2. If you will `implements CommandLineRunner` SpringBoot allows you to implement the `run` method. You can put code that you want to execute without corrupting the main method.
+
+```
+public class SimpleMappingKataApplication implements CommandLineRunner {
+
+    @Override
+    public void run(final String... strings) throws Exception {
+        // put code here...
+    }
+```
+
+3. 
