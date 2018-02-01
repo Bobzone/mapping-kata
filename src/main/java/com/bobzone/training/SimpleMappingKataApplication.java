@@ -8,9 +8,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.logging.Logger;
+
 @SpringBootApplication
 public class SimpleMappingKataApplication implements CommandLineRunner {
 
+    private static final Logger logger = Logger.getLogger(SimpleMappingKataApplication.class.getName());
     private final ContactService service;
 
     @Autowired
@@ -43,5 +46,13 @@ public class SimpleMappingKataApplication implements CommandLineRunner {
         service.save(contact1);
         service.save(contact2);
         service.save(contact3);
+
+        final Contact withId = service.getWithId(1L);
+        logger.info("Address of got entity is " + withId.getAddress());
+
+        withId.setAddress("Polska!");
+
+        final Contact withIdAfterChange = service.getWithId(1L);
+        logger.info("Address of changed entity is now" + withIdAfterChange.getAddress());
     }
 }

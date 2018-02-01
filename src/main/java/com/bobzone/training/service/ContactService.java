@@ -25,10 +25,6 @@ public class ContactService {
         return repository.getAll();
     }
 
-    public Contact getWithFirstName(final String firstName) {
-        return repository.getWithFirstName(firstName);
-    }
-
     public void save(final Contact merged) {
         repository.persist(merged);
     }

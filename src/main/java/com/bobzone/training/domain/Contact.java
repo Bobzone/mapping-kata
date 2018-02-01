@@ -60,4 +60,12 @@ public class Contact extends PersonalizedEntity {
     public String getAddress() {
         return address;
     }
+
+    public void setAddress(final String address) {
+        this.address = address;
+    }
+
+    public void changeAddress(final String address) {
+        setAddress(address);
+    }
 }
