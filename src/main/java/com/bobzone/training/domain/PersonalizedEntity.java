@@ -1,9 +1,6 @@
 package com.bobzone.training.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 import static java.util.UUID.randomUUID;
 
@@ -18,6 +15,9 @@ public abstract class PersonalizedEntity {
     private Long id;
 
     private String UUID = randomUUID().toString();
+
+    @Version
+    private Long version;
 
     public Long getId() {
         return id;

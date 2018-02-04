@@ -47,12 +47,6 @@ public class SimpleMappingKataApplication implements CommandLineRunner {
         service.save(contact2);
         service.save(contact3);
 
-        final Contact withId = service.getWithId(1L);
-        logger.info("Address of got entity is " + withId.getAddress());
-
-        withId.setAddress("Polska!");
-
-        final Contact withIdAfterChange = service.getWithId(1L);
-        logger.info("Address of changed entity is now" + withIdAfterChange.getAddress());
+        contact1.setAddress("Polskaaa!");
     }
 }
