@@ -4,7 +4,6 @@ import com.bobzone.training.domain.PersonalizedEntity;
 import com.bobzone.training.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -46,13 +45,11 @@ public abstract class AbstractRepositoryImpl<T extends PersonalizedEntity> imple
     }
 
     @Override
-    @Transactional
     public void persist(final T obj) {
         em.persist(obj);
     }
 
     @Override
-    @Transactional
     public T merge(final T merged) {
         return em.merge(merged);
     }
