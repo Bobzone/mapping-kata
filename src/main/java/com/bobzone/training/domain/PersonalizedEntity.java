@@ -21,7 +21,7 @@ public abstract class PersonalizedEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String UUID = randomUUID().toString();
+    private String UUID = randomUUID().toString().replace("-", "");
 
     @Version
     private Long version;
