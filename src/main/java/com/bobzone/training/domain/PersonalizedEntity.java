@@ -10,6 +10,12 @@ import static java.util.UUID.randomUUID;
 // @MappedSupperclass is for adding base class persistent properties as if they were declared in them directly
 public abstract class PersonalizedEntity {
 
+    // if you want custom seq generator
+    @SequenceGenerator(
+            name = "myGen",
+            sequenceName = "MY_SEQ"
+    )
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
