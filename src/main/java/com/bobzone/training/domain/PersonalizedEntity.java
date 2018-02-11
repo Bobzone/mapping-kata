@@ -1,6 +1,7 @@
 package com.bobzone.training.domain;
 
 import javax.persistence.*;
+import java.util.Date;
 
 import static java.util.UUID.randomUUID;
 
@@ -24,6 +25,13 @@ public abstract class PersonalizedEntity {
 
     @Version
     private Long version;
+
+    private Date created;
+
+    @PrePersist
+    private void onCreate() {
+        created = new Date();
+    }
 
     public Long getId() {
         return id;
