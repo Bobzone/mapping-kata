@@ -15,20 +15,17 @@ import java.util.List;
 })
 public class Contact extends PersonalizedEntity {
 
-    public Contact() {
-    }
-
-    public Contact(final String firstName, final String lastName, final String address) {
+    private Contact(final String firstName, final String lastName, final String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
     }
 
-    private String firstName;
+    private final String firstName;
 
-    private String lastName;
+    private final String lastName;
 
-    private String address;
+    private final String address;
 
     @OneToMany(mappedBy = "contact", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Phone> phoneList = new ArrayList<>();
@@ -37,35 +34,42 @@ public class Contact extends PersonalizedEntity {
         return firstName;
     }
 
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
     }
 
     public List<Phone> getPhoneList() {
         return phoneList;
     }
 
-    public void setPhoneList(final List<Phone> phoneList) {
-        this.phoneList = phoneList;
-    }
-
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(final String address) {
-        this.address = address;
-    }
 
-    public void changeAddress(final String address) {
-        setAddress(address);
+    public static class ContactBuilder {
+
+        private String firstName;
+        private String lastName;
+        private String address;
+
+        public ContactBuilder setFirstName(final String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public ContactBuilder setLastName(final String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public ContactBuilder setAddress(final String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Contact build() {
+            return new Contact(firstName, lastName, address);
+        }
     }
 }
